@@ -7,17 +7,20 @@ buildscript {
         jcenter()
 
         maven {
-            url uri("/repo")
+            // 插件仓库
+            url "https://dl.bintray.com/tf27674569/maven"
         }
 
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.6.2'
+        // 插件
         classpath 'org.tianfeng.plugin:plugin:1.0.0'
 
+        // 将项目发布到JCenter 所需要的jar   添加依赖
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.6'
 
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
     }
 }
 
@@ -25,10 +28,11 @@ allprojects {
     repositories {
         google()
         jcenter()
-        
+        mavenCentral()
     }
 }
 
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+

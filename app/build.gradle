@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-apply plugin: 'org.tianfeng.plugin'
+apply plugin: 'org.tianfeng.plugin' // 插件
 
 android {
     compileSdkVersion 29
@@ -17,6 +17,7 @@ android {
 
     buildTypes {
         release {
+            // 插件对应的task
             manifest{
                 className="com.tianfeng.plugin.MainActivity"
             }
