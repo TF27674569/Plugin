@@ -26,9 +26,14 @@ public class Manifest implements Plugin<Project> {
                             output.processManifest.doLast {
                                 // 获取AndroidManifest 文件
                                 def manifestPath = "${project.getProjectDir().absolutePath}/build/intermediates/merged_manifests/${variant.dirName}/AndroidManifest.xml"
+                                def manifestFile = new File(manifestPath)
+                                if (!manifestFile.exists()) {
+                                    manifestPath = "${project.getProjectDir().absolutePath}/build/intermediates/manifests/full/${variant.dirName}/AndroidManifest.xml"
+                                    manifestFile = new File(manifestPath)
+                                }
                                 println("path:${manifestPath}")
                                 // manifest 文件内容
-                                def manifestContent = new File(manifestPath).getText('UTF-8')
+                                def manifestContent = manifestFile.getText('UTF-8')
 
                                 // 包含过滤的文本
                                 if (manifestContent.contains(className)) {
